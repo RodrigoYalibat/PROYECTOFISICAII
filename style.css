@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+h2 { color: #333; }
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+}
+input[type=number] { width: 70px; margin: 2px; }
+select, button { margin-top: 10px; padding: 5px; }
+table { border-collapse: collapse; margin-top: 20px; width: 80%; }
+table, th, td { border: 1px solid #555; }
+th, td { padding: 8px; text-align: center; }
+.circuito { margin-top: 20px; }
+.resistor {
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+    background: orange;
+    margin: 5px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 4px;
+}
+.cable { display: inline-block; width: 20px; height: 4px; background: black; vertical-align: middle; }

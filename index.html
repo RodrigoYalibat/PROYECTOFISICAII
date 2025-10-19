@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Simulador de Circuitos Resistivos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Simulador de Circuitos Resistivos</h2>
+
+<form id="formCircuito">
+    Voltaje de la fuente (V): <input type="number" id="voltaje" step="0.01" required><br><br>
+    Tipo de conexión: 
+    <select id="tipo">
+        <option value="serie">Serie</option>
+        <option value="paralelo">Paralelo</option>
+    </select><br><br>
+
+    <div id="resistoresContainer"></div>
+    <button type="button" id="agregarResistorBtn">Agregar Resistor</button><br><br>
+
+    <button type="submit">Calcular</button>
+</form>
+
+<div id="resultados"></div>
+<div class="circuito" id="visualizacion"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
