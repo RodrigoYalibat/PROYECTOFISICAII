@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Simulador de Circuitos Resistivos Visual</title>
+<title>CircuitSimulator -RAYDC</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,14 +20,13 @@
     <div id="resistoresContainer"></div>
     <button type="button" id="agregarResistorBtn">Agregar Resistor</button>
     <br><br>
-    <button type="submit">Dibujar Circuito</button>
+    <button type="submit">Calcular</button>
+    <button type="button" id="reiniciarBtn">Reiniciar</button>
     
 </form>
 
 <div id="resultados"></div>
-<canvas id="canvasCircuito" width="1000" height="500"></canvas>
-<br><br>
-<button type="button" id="reiniciarBtn">Reiniciar Circuito</button>
+<canvas id="canvasCircuito" width="750" height="750"></canvas>
 
 <script src="script.js"></script>
 </body>

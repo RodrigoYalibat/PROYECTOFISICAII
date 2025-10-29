@@ -13,11 +13,21 @@ form {
     background-color: #fff;
     padding: 15px;
     border-radius: 10px;
-    display: inline-block;
+    width: 75%;
+    margin: 0 auto;
+    max-width: 400px;
 }
 input[type=number], select, button {
     margin: 5px;
     padding: 5px;
 }
+
+canvas {
+    height: 750px;
+    max-height: 90%;
+    width: 750px;
+    max-width: 90%;
+}
+
 table { border-collapse: collapse; margin: 10px auto; }
 th, td { border: 1px solid #333; padding: 5px; text-align: center; }
