@@ -128,8 +128,6 @@ function mostrarResultados(resultados, req, itotal, voltaje){
     document.getElementById('resultados').innerHTML=html;
 }
 
-// Función para dibujar flechas de corriente
-// Función para dibujar el circuito en canvas (sin flechas, y con lado izquierdo en línea recta)
 function dibujarCanvas(resultados, tipo, voltaje){
     ctx.clearRect(0,0,canvas.width,canvas.height);
 

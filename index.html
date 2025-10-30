@@ -9,24 +9,48 @@
 
 <h1>Simulador de Circuitos Resistivos</h1>
 
-<form id="formCircuito">
-    Voltaje (V): <input type="number" id="voltaje" step="0.01" required><br><br>
-    Tipo de conexión:
-    <select id="tipo">
-        <option value="serie">Serie</option>
-        <option value="paralelo">Paralelo</option>
-    </select><br><br>
+<!-- CONTENEDOR PARA ALINEAR FORMULARIO Y RESULTADOS -->
+<div id="contenedor-principal">
+    <!-- PANEL IZQUIERDO: FORMULARIO -->
+    <form id="formCircuito">
+        <h3>Ingreso de Datos</h3>
+        Voltaje (V): <input type="number" id="voltaje" step="0.01" required>
+        Tipo de conexión:
+        <select id="tipo">
+            <option value="serie">Serie</option>
+            <option value="paralelo">Paralelo</option>
+        </select>
 
-    <div id="resistoresContainer"></div>
-    <button type="button" id="agregarResistorBtn">Agregar Resistor</button>
-    <br><br>
-    <button type="submit">Calcular</button>
-    <button type="button" id="reiniciarBtn">Reiniciar</button>
-    
-</form>
+        <div id="resistoresContainer"></div>
+        <button type="button" id="agregarResistorBtn">Agregar Resistor</button>
+        <button type="submit">Calcular</button>
+        <button type="button" id="reiniciarBtn">Reiniciar</button>
+    </form>
 
-<div id="resultados"></div>
-<canvas id="canvasCircuito" width="750" height="750"></canvas>
+    <!-- PANEL DERECHO: RESULTADOS -->
+    <div id="resultados">
+        <table id="tablaResultados">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Resistencia (Ω)</th>
+                    <th>Voltaje (V)</th>
+                    <th>Corriente (A)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas generadas dinámicamente -->
+            </tbody>
+        </table>
+        <br>
+        <p id="resTotal">Resistencia Total: —</p>
+        <p id="corrienteTotal">Corriente Total: —</p>
+        <p id="voltajeTotal">Voltaje Total: —</p>
+    </div>
+</div>
+
+<!-- CANVAS DEL CIRCUITO -->
+<canvas id="canvasCircuito" width="1200" height="400"></canvas>
 
 <script src="script.js"></script>
 </body>
