@@ -30,7 +30,7 @@ function agregarResistor() {
   input.style.width = '90px';
   const btn = document.createElement('button');
   btn.type = 'button';
-  btn.textContent = 'X';
+  btn.textContent = '❌';
   btn.addEventListener('click', () => { div.remove(); reindexar(); agregarBtn.style.display = ''; });
   div.appendChild(label);
   div.appendChild(input);
@@ -126,36 +126,67 @@ function dibujarCircuito(resultados, tipo, voltaje) {
   ctx.fillStyle = 'black';
   ctx.font = '14px Arial';
   ctx.textAlign = 'center';
+
   const centerY = canvas.height / 2;
   const batX = 30;
   const longH = 50;
   const shortH = 18;
   const gap = 12;
-  ctx.beginPath(); ctx.moveTo(batX, centerY - longH / 2); ctx.lineTo(batX, centerY + longH / 2); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(batX + gap, centerY - shortH / 2); ctx.lineTo(batX + gap, centerY + shortH / 2); ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(batX, centerY - longH / 2);
+  ctx.lineTo(batX, centerY + longH / 2);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(batX + gap, centerY - shortH / 2);
+  ctx.lineTo(batX + gap, centerY + shortH / 2);
+  ctx.stroke();
+
   ctx.fillText(`${voltaje} V`, batX + gap + 36, centerY - longH / 2 - 6);
-  const sizeRes = 120;
+
   const amp = 18;
   const peaks = 6;
+
   if (tipo === 'serie') {
     const startX = batX + 80;
     const yLine = centerY;
-    const espacio = 60;
+    const total = resultados.length;
+    const margenFinal = 100;
+    const espacioDisponible = canvas.width - startX - margenFinal;
+    const espacioEntre = Math.max(10, 30 - total);
+    const sizeRes = Math.max(40, (espacioDisponible - (espacioEntre * (total - 1))) / total);
     let x = startX;
-    ctx.beginPath(); ctx.moveTo(batX + gap + 20, yLine); ctx.lineTo(startX, yLine); ctx.stroke();
-    for (let i = 0; i < resultados.length; i++) {
+
+    ctx.beginPath();
+    ctx.moveTo(batX + gap + 20, yLine);
+    ctx.lineTo(startX, yLine);
+    ctx.stroke();
+
+    for (let i = 0; i < total; i++) {
       drawZigzagHoriz(x, yLine, sizeRes, amp, peaks);
       ctx.fillText(`R${i + 1}`, x + sizeRes / 2, yLine - 40);
       ctx.fillText(`${resultados[i].R} Ω`, x + sizeRes / 2, yLine - 22);
-      x += sizeRes + espacio;
-      ctx.beginPath(); ctx.moveTo(x - espacio / 2, yLine); ctx.lineTo(x, yLine); ctx.stroke();
+      const nextX = x + sizeRes + espacioEntre;
+      ctx.beginPath();
+      ctx.moveTo(x + sizeRes, yLine);
+      ctx.lineTo(nextX, yLine);
+      ctx.stroke();
+      x = nextX;
     }
-    ctx.beginPath(); ctx.moveTo(x, yLine); ctx.lineTo(x, yLine + 90); ctx.lineTo(batX + gap + 20, yLine + 90); ctx.lineTo(batX + gap + 20, yLine); ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(x, yLine);
+    ctx.lineTo(x, yLine + 90);
+    ctx.lineTo(batX + gap + 20, yLine + 90);
+    ctx.lineTo(batX + gap + 20, yLine);
+    ctx.stroke();
   } else {
     const leftX = batX + 80;
     const rightX = canvas.width - 80;
     const topY = centerY - 150;
     const bottomY = centerY + 150;
+    const sizeRes = 120;
     ctx.beginPath(); ctx.moveTo(batX + gap + 20, centerY); ctx.lineTo(leftX, centerY); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(leftX, topY); ctx.lineTo(rightX, topY); ctx.lineTo(rightX, bottomY); ctx.lineTo(leftX, bottomY); ctx.stroke();
     const n = resultados.length;
